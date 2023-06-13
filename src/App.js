@@ -1,4 +1,6 @@
 import Hello from './Hello.js';
+import Hobby from './Hobby.js';
+import TitleLi from './TitleLi.js';
 
 export default function App() {
     const name = 'ENTER YOUR NAME';
@@ -7,20 +9,15 @@ export default function App() {
             <Hello name={name}></Hello>
             <div>
                 <ol>
-                    <li>
-                        <b>Name:</b> {name}
-                    </li>
-                    <li>
-                        <b>Age:</b> 18
-                    </li>
-                    <li>
-                        <b>Hobbies:</b>
+                    <TitleLi title="Name">{name}</TitleLi>
+                    <TitleLi title="Age">18</TitleLi>
+                    <TitleLi title="Hobbies">
                         <ol>
-                            <li>Swim</li>
-                            <li>Run</li>
-                            <li>Game</li>
+                            <Hobby title="Swim" emoji="🏊" />
+                            <Hobby title="Run" emoji="🏃" />
+                            <Hobby title="Game" emoji="🎮" />
                         </ol>
-                    </li>
+                    </TitleLi>
                 </ol>
             </div>
         </div>
