@@ -1,5 +1,38 @@
-import { render } from '@testing-library/react';
+import { jest } from '@jest/globals';
+import { render, screen } from '@testing-library/react';
 import TitleLi from '../src/TitleLi.js';
+import userEvent from '@testing-library/user-event';
+
+it('Should trigger props.onMouseEnter when hover', async () => {
+    const title = 'Title-fslahsdiqwjkljs';
+    const content = 'Content-kdsjflskhiisdghsl';
+    const onMouseEnter = jest.fn();
+
+    render(
+        <TitleLi title={title} isHidden={true} onMouseEnter={onMouseEnter}>
+            {content}
+        </TitleLi>,
+    );
+
+    await userEvent.hover(screen.getByText(title));
+    expect(onMouseEnter).toBeCalled();
+});
+
+it('Should trigger props.onMouseLeave when hover', async () => {
+    const title = 'Title-fslahsdiqwjkljs';
+    const content = 'Content-kdsjflskhiisdghsl';
+    const onMouseLeave = jest.fn();
+
+    render(
+        <TitleLi title={title} isHidden={true} onMouseLeave={onMouseLeave}>
+            {content}
+        </TitleLi>,
+    );
+
+    await userEvent.hover(screen.getByText(title));
+    await userEvent.unhover(screen.getByText(title));
+    expect(onMouseLeave).toBeCalled();
+});
 
 it('Should hide children if isHidden', async () => {
     const title = 'Title-fslahsdiqwjkljs';
