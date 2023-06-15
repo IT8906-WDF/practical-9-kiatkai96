@@ -1,5 +1,7 @@
+import { jest } from '@jest/globals';
 import { render } from '@testing-library/react';
 import RPSRecords from '../src/RPSRecords.js';
+import userEvent from '@testing-library/user-event';
 
 const records = [
     { move: 'Rock', result: 'Win' },
@@ -12,6 +14,14 @@ const records = [
     { move: 'Scissors', result: 'Win' },
     { move: 'Paper', result: 'Win' },
 ];
+
+test('Clicking on records tell me which index was clicked', async () => {
+    const onDeleteRecord = jest.fn();
+    const { container } = render(<RPSRecords records={records} onDeleteRecord={onDeleteRecord} />);
+
+    await userEvent.click(container.querySelector('li:nth-of-type(3)'));
+    expect(onDeleteRecord).toBeCalledWith(2);
+});
 
 test('Should render records li', () => {
     const renderResult = render(<RPSRecords records={records} />);
