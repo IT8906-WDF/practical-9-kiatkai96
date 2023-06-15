@@ -1,6 +1,7 @@
 import Age from './Age.js';
 import Hello from './Hello.js';
 import Hobby from './Hobby.js';
+import RockPaperScissors from './RockPaperScissors.js';
 import TitleLi from './TitleLi.js';
 
 export default function App(props) {
@@ -23,6 +24,7 @@ export default function App(props) {
                     </TitleLi>
                 </ol>
             </div>
+            <RockPaperScissors />
         </div>
     );
 }

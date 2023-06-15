@@ -1,0 +1,23 @@
+import RPSButtons from './RPSButtons.js';
+import RPSRecords from './RPSRecords.js';
+
+export default function RockPaperScissors(props) {
+    const [records, setRecords] = React.useState([]);
+    return (
+        <div>
+            <h1>Play rock-paper-scissors with me!</h1>
+            <RPSButtons
+                onButtonPressed={(move) => {
+                    const randomNumber = Math.floor(Math.random() * 3);
+                    let result;
+                    if (randomNumber === 0) result = 'Win';
+                    else if (randomNumber === 1) result = 'Lose';
+                    else result = 'Tie';
+
+                    setRecords([...records, { result: result, move: move }]);
+                }}
+            />
+            <RPSRecords records={records} />
+        </div>
+    );
+}
