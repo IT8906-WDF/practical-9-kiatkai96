@@ -1,9 +1,18 @@
+import RPSButton from './RPSButton.js';
+
+const moves = ['Rock', 'Paper', 'Scissors'];
+
 export default function RPSButtons(props) {
     return (
         <div>
-            <button onClick={() => props.onButtonPressed('Rock')}>Rock</button>
-            <button onClick={() => props.onButtonPressed('Paper')}>Paper</button>
-            <button onClick={() => props.onButtonPressed('Scissors')}>Scissors</button>
+            {moves.map((move) => (
+                <RPSButton
+                    key={move}
+                    onClick={() => props.onButtonPressed(move)}
+                    move={move}
+                    records={props.records.filter((record) => record.move === move)}
+                />
+            ))}
         </div>
     );
 }

@@ -9,7 +9,7 @@ export default function RPSRecords(props) {
                 {props.records.map(function (record, index) {
                     // Sample record: { result: "Win", move: "Rock" }
                     return (
-                        <li key={index}>
+                        <li onClick={() => props.onDeleteRecord(index)} key={index}>
                             {record.result} ({record.move})
                         </li>
                     );

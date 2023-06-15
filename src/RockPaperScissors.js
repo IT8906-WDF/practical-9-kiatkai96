@@ -1,4 +1,5 @@
 import RPSButtons from './RPSButtons.js';
+import RPSInput from './RPSInput.js';
 import RPSRecords from './RPSRecords.js';
 
 export default function RockPaperScissors(props) {
@@ -16,8 +17,16 @@ export default function RockPaperScissors(props) {
 
                     setRecords([...records, { result: result, move: move }]);
                 }}
+                records={records}
             />
-            <RPSRecords records={records} />
+            <RPSInput onAdd={(record) => setRecords([...records, record])} />
+            <RPSRecords
+                records={records}
+                onDeleteRecord={(index) => {
+                    records.splice(index, 1);
+                    setRecords([...records]);
+                }}
+            />
         </div>
     );
 }
