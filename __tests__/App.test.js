@@ -43,12 +43,11 @@ test('Should use <Hobby /> at least once', async () => {
     expect(mockHobbyFunction.mock.calls.length).toEqual(hobbies.length);
 });
 
-test('Should have 2 ol', () => {
+test('Should have 3 ol - main, hobby, rps', () => {
     const renderResult = render(<App hobbies={[]} />);
 
-    // 1 or 2 ol
     const ols = renderResult.container.querySelectorAll('ol');
-    expect(ols.length).toEqual(2);
+    expect(ols.length).toEqual(3);
 });
 
 test('First 3 Li are Name:..., Age:...., and Hobbies:.... accordingly', () => {
