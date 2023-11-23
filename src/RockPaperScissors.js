@@ -1,32 +1,37 @@
 import RPSButtons from './RPSButtons.js';
 import RPSInput from './RPSInput.js';
 import RPSRecords from './RPSRecords.js';
+import recordsReducer from './recordsReducer.js';
+import { IsEmojiContext } from './IsEmojiContext.js';
 
 export default function RockPaperScissors(props) {
-    const [records, setRecords] = React.useState([]);
+    const [records, dispatch] = React.useReducer(recordsReducer, []);
+    const [isEmoji, setIsEmoji] = React.useState(false);
     return (
-        <div>
-            <h1>Play rock-paper-scissors with me!</h1>
-            <RPSButtons
-                onButtonPressed={(move) => {
-                    const randomNumber = Math.floor(Math.random() * 3);
-                    let result;
-                    if (randomNumber === 0) result = 'Win';
-                    else if (randomNumber === 1) result = 'Lose';
-                    else result = 'Tie';
-
-                    setRecords([...records, { result: result, move: move }]);
-                }}
-                records={records}
-            />
-            <RPSInput onAdd={(record) => setRecords([...records, record])} />
-            <RPSRecords
-                records={records}
-                onDeleteRecord={(index) => {
-                    records.splice(index, 1);
-                    setRecords([...records]);
-                }}
-            />
-        </div>
+        <IsEmojiContext.Provider value={isEmoji}>
+            <div>
+                <h1>Play rock-paper-scissors with me!</h1>
+                <RPSButtons
+                    onButtonPressed={(move) => {
+                        dispatch({ name: 'add', move: move });
+                    }}
+                    records={records}
+                />
+                <RPSInput onAdd={(record) => dispatch({ name: 'force add', record: record })} />
+                <button
+                    onClick={function () {
+                        setIsEmoji(!isEmoji);
+                    }}
+                >
+                    Toggle Emoji
+                </button>
+                <RPSRecords
+                    records={records}
+                    onDeleteRecord={(index) => {
+                        dispatch({ name: 'remove', index: index });
+                    }}
+                />
+            </div>
+        </IsEmojiContext.Provider>
     );
 }
