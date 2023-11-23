@@ -1,7 +1,8 @@
+import { useContext } from 'react';
 import { IsEmojiContext, emoji } from './IsEmojiContext.js';
 
 export default function RPSRecords(props) {
-    const isEmoji = React.useContext(IsEmojiContext);
+    const isEmoji = useContext(IsEmojiContext);
     const winCount = props.records.filter((record) => record.result === 'Win').length;
     const totalCount = props.records.length;
     const winPercentage = totalCount ? ((winCount / totalCount) * 100).toFixed(2) : 0;
