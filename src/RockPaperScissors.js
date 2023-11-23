@@ -1,3 +1,4 @@
+import { useReducer, useState } from 'react';
 import RPSButtons from './RPSButtons.js';
 import RPSInput from './RPSInput.js';
 import RPSRecords from './RPSRecords.js';
@@ -5,8 +6,8 @@ import recordsReducer from './recordsReducer.js';
 import { IsEmojiContext } from './IsEmojiContext.js';
 
 export default function RockPaperScissors(props) {
-    const [records, dispatch] = React.useReducer(recordsReducer, []);
-    const [isEmoji, setIsEmoji] = React.useState(false);
+    const [records, dispatch] = useReducer(recordsReducer, []);
+    const [isEmoji, setIsEmoji] = useState(false);
     return (
         <IsEmojiContext.Provider value={isEmoji}>
             <div>

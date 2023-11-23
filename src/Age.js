@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import TitleLi from './TitleLi.js';
 
 export default function Age(props) {
-    const [isHidden, setIsHidden] = React.useState(true); // Add state
+    const [isHidden, setIsHidden] = useState(true); // Add state
     const emoji = props.value >= 18 ? '' : '🔞';
     return (
         <TitleLi

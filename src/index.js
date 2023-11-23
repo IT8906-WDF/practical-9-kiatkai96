@@ -1,4 +1,5 @@
 import App from './App.js';
+import ReactDOM from 'react-dom/client';
 
 const hobbies = [
     { emoji: '🏊', title: 'Swim' },

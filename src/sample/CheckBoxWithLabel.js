@@ -1,5 +1,7 @@
+import { useState } from 'react';
+
 export default function CheckBoxWithLabel(props) {
-    const [isChecked, setIsChecked] = React.useState(false);
+    const [isChecked, setIsChecked] = useState(false);
     const onChange = () => setIsChecked(!isChecked);
     return (
         <label>

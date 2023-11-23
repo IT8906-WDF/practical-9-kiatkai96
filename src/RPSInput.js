@@ -1,6 +1,8 @@
+import { useState } from 'react';
+
 export default function RPSInput(props) {
-    const [selectedMove, setSelectedMove] = React.useState('Rock');
-    const [isWin, setIsWin] = React.useState(false);
+    const [selectedMove, setSelectedMove] = useState('Rock');
+    const [isWin, setIsWin] = useState(false);
     return (
         <div>
             <select value={selectedMove} onChange={(e) => setSelectedMove(e.target.value)}>
